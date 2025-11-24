@@ -12,9 +12,7 @@ const app = express()
 
 app.use(express.json())
 app.use('/auth',authRouter)
-app.use('/accounts', authVerifier, (req,res) => {
-    console.log('all good')
-})
+app.use('/accounts', authVerifier,accountRouter)
 
 app.listen(PORT, (req,res) => {
     console.log(`Listening at: ${PORT}`)

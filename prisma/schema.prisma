@@ -14,5 +14,15 @@ model User {
   id Int @id @default(autoincrement())
   username String @unique
   password String
+  accounts Account[]
   createdAt DateTime @default(now())
+}
+
+model Account {
+  id Int @id @default(autoincrement())
+  desc String
+  bank String
+  accNo String
+  userId Int
+  user User @relation(fields: [userId], references:[id])
 }
