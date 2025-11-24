@@ -15,6 +15,7 @@ model User {
   username String @unique
   password String
   accounts Account[]
+  transactions Transaction[]
   createdAt DateTime @default(now())
 }
 
@@ -25,4 +26,15 @@ model Account {
   accNo String
   userId Int
   user User @relation(fields: [userId], references:[id])
+  transactions Transaction[]
+}
+
+model Transaction {
+  id Int @id @default(autoincrement())
+  desc String
+  cost Float
+  userId Int
+  accountId Int
+  user User @relation(fields: [userId], references:[id])
+  account Account @relation(fields: [accountId], references:[id])
 }
