@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "Account" ALTER COLUMN "accNo" SET DATA TYPE TEXT;
