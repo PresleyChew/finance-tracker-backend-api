@@ -4,6 +4,7 @@ import authRouter from './routes/authRouter.js'
 import accountRouter from './routes/accountRouter.js'
 import {authVerifier} from './middleware/authMiddleware.js'
 import transactionRouter from './routes/transactionRouter.js'
+import analyticRouter from './routes/analyticRouter.js'
 
 dotenv.config();
 
@@ -16,6 +17,7 @@ app.use(express.json())
 app.use('/auth',authRouter)
 app.use('/accounts', authVerifier,accountRouter)
 app.use('/transactions',authVerifier,transactionRouter)
+app.use('/analytics',authVerifier,analyticRouter)
 
 app.listen(PORT, (req,res) => {
     console.log(`Listening at: ${PORT}`)
