@@ -34,7 +34,7 @@ async function getIndiv(req,res) {
 }
 
 async function createTransaction(req,res) {
-    const {desc,cost,accountId} = req.body
+    const {desc,cost,category,accountId} = req.body
     const userId = req.userId
     try {
         const account = await prisma.account.findFirst({
@@ -47,6 +47,7 @@ async function createTransaction(req,res) {
             data: {
                 desc,
                 cost,
+                category,
                 userId,
                 accountId
             }
@@ -84,7 +85,7 @@ async function deleteTransaction(req,res) {
 async function editTransaction(req,res) {
     const userId = req.userId
     const id = Number(req.params.id)
-    const {desc,cost,accountId} = req.body
+    const {desc,cost,category,accountId} = req.body
     if (!id) {
         return res.status(400).json({error:'Invalid ID Provided'})
     }
@@ -108,6 +109,7 @@ async function editTransaction(req,res) {
             data: {
                 desc: desc ?? itemToBeUpdated.desc,
                 cost: cost ?? itemToBeUpdated.cost,
+                category: category ?? itemToBeUpdated.category,
                 accountId: accountId ?? itemToBeUpdated.accountId
             }
         })
