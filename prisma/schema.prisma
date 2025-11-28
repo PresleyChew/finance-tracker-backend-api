@@ -34,7 +34,9 @@ model Transaction {
   desc String
   cost Float
   userId Int
+  category String
   accountId Int
+  createdAt DateTime @default(now())
   user User @relation(fields: [userId], references:[id])
   account Account @relation(fields: [accountId], references:[id])
 }

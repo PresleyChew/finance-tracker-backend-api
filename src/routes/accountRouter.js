@@ -15,4 +15,5 @@ router.patch('/:id',accountControllers.updateIndivAccount)
 // Delete account
 router.delete('/:id',accountControllers.deleteIndivAccount)
 
+
 export default router
