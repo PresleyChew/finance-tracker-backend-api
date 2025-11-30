@@ -7,6 +7,8 @@ RUN npm install
 
 COPY . .
 
-EXPOSE 3000
+RUN npx prisma generate
 
-CMD ["node","app.js"]
+EXPOSE 9000
+
+CMD ["node","/src/app.js"]
