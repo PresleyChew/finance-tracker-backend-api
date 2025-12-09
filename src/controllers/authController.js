@@ -5,11 +5,10 @@ import jwt from 'jsonwebtoken'
 export async function register(req,res) {
     const {username,password} = req.body
     try {
-        // frontend assumes username and password exists else frontend will return error
-        // we check if username exist in db first we dont want to register existing clients
+        
         const exist = await prisma.user.findUnique({
             where: {
-                username : username
+                username : username.toLowerCase()
             }
         })
         if (exist) {

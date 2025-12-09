@@ -44,7 +44,59 @@ describe("[Negative] Test Auth Routes", () => {
         const res = await request(app)
             .post("/auth/login")
             .send({ username:"test@example.com", password:"InvalidPassword"})
+
         expect(res.status).toBe(401) // Should be code 401 for invalid credentials
+        expect(res.body.token).toBeUndefined()
+    })
+
+    it("Register with empty username", async() => {
+        const res = await request(app)
+            .post("/auth/register")
+            .send({username:"", password:"Testing1234567"})
+
+        expect(res.status).toBe(400) // Bad request
+        expect(res.body.token).toBeUndefined()
+    })
+
+    it("Register with less than 8 character password", async() => {
+        const res = await request(app)
+            .post("/auth/register")
+            .send({username:"test3@example.com", password:""})
+
+        expect(res.status).toBe(400)
+        expect(res.body.token).toBeUndefined()
+    })
+
+    it("Register with empty username and less than 8 character password", async () => {
+        const res = await request(app)
+            .post("/auth/register")
+            .send({username:"",password:""})
+        
+        expect(res.status).toBe(400)
+        expect(res.body.token).toBeUndefined()
+    })
+
+    it("Login with empty username", async () => {
+        const res = await request(app)
+            .post("/auth/login")
+            .send({username:"", password:"testing123"})
+        expect(res.status).toBe(400)
+        expect(res.body.token).toBeUndefined()
+    })
+
+    it("Login with empty password", async () => {
+        const res = await request(app)
+            .post("/auth/login")
+            .send({username:"test@example.com",password:""})
+        expect(res.status).toBe(400)
+        expect(res.body.token).toBeUndefined()
+    })
+
+    it("Login with empty username and empty password", async () => {
+        const res = await request(app)
+            .post("/auth/login")
+            .send({username:"",password:""})
+        expect(res.status).toBe(400)
         expect(res.body.token).toBeUndefined()
     })
 })
