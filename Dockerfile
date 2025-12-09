@@ -11,4 +11,4 @@ RUN npx prisma generate
 
 EXPOSE 9000
 
-CMD ["node","/src/app.js"]
+CMD ["node","/src/server.js"]
