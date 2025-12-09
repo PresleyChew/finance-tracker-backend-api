@@ -19,6 +19,4 @@ app.use('/accounts', authVerifier,accountRouter)
 app.use('/transactions',authVerifier,transactionRouter)
 app.use('/analytics',authVerifier,analyticRouter)
 
-app.listen(PORT, (req,res) => {
-    console.log(`Listening at: ${PORT}`)
-})
+export default app
