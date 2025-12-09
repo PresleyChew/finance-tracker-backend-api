@@ -38,8 +38,8 @@ export async function login(req,res) {
                 username:username
             }
         })
-        if (!exist) { // return generic error msg so client wont know internal state
-            return res.status(401).json({error:'Invalid Credentials'})
+        if (!exist) { 
+            return res.status(404).json({error:'User does not exist'})
         }
         // else means exist we can compare
         const isVerified = await bcrypt.compare(password,exist.password)
