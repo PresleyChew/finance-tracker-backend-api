@@ -41,7 +41,7 @@ async function createTransaction(req,res) {
             where: {id:accountId,userId}
         })
         if (!account) {
-            return res.status(404).json({error:'Account provided is incorrect or does not belong to requester'})
+            return res.status(404).json({error:'Account provided does not exist or does not belong to requester'})
         }
         const transaction = await prisma.transaction.create({
             data: {
