@@ -5,7 +5,7 @@ describe("[Positive] Test Auth Routes", () => {
   it ("Create a new user", async () => {
     const res = await request(app)
         .post("/auth/register")
-        .send({ username: "test2@example.com", password:"testing123@@@@"})
+        .send({ username: "test3@example.com", password:"testing123@@@@"})
     expect(res.status).toBe(201) // Successful creation
     expect(res.body.token).toBeDefined()
   })
@@ -13,7 +13,7 @@ describe("[Positive] Test Auth Routes", () => {
   it("Login with correct credentials", async () => {
     const res = await request(app)
         .post("/auth/login")
-        .send({ username: "test2@example.com", password: "testing123@@@@" })
+        .send({ username: "test3@example.com", password: "testing123@@@@" })
 
     expect(res.status).toBe(200) // OK Authenticated
     expect(res.body.token).toBeDefined()
@@ -61,7 +61,7 @@ describe("[Negative] Test Auth Routes", () => {
     it("Register with less than 8 character password", async() => {
         const res = await request(app)
             .post("/auth/register")
-            .send({username:"test3@example.com", password:""})
+            .send({username:"test4@example.com", password:""})
 
         expect(res.status).toBe(400)
         expect(res.body.token).toBeUndefined()
