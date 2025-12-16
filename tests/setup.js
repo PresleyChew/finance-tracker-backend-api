@@ -76,6 +76,35 @@ beforeAll(async () => {
 
     global.mockAccountsUser2 = [accountCreationRes1, accountCreationRes2]
     global.mockAccount3 = accountCreationRes2 
+    
+    await prisma.transaction.create({
+      data:{
+        desc:'TEST TRANSACTION',
+        cost: 567,
+        userId: 1,
+        category: 'TEST CATEGORY',
+        accountId:1
+      }
+    })
+    const transactionCreationRes1 = await global.prisma.transaction.create({
+      data:{
+        desc:'TEST TRANSACTION1',
+        cost: 11.1,
+        userId: 2,
+        category: 'TEST CATEGORY1',
+        accountId: 2
+      }
+    })
+    const transactionCreationRes2 = await global.prisma.transaction.create({
+      data:{
+        desc:'TEST TRANSACTION2',
+        cost: 123,
+        userId:2,
+        category: 'TEST CATEGORY2',
+        accountId: 2
+      }
+    })
+
 })
 
 // Teardown
